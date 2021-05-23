@@ -1,0 +1,48 @@
+﻿<Page x:Class="Design.Pages.PageCar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Design.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageCar">
+
+    <Grid>
+        <DataGrid Name="DG"
+                  Margin="10"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Бренд"
+                    Binding="{Binding CarBrand}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Компания"
+                    Binding="{Binding CarCompany}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Гос. номер"
+                    Binding="{Binding CarNumber}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Грузоподъемность"
+                    Binding="{Binding Сarrying}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Расход топлива"
+                    Binding="{Binding FuelConsumption}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Длина прицепа"
+                    Binding="{Binding Length}"
+                    Width="*"/>
+                <DataGridTextColumn
+                    Header="Стоимость"
+                    Binding="{Binding CostDelivery}"
+                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

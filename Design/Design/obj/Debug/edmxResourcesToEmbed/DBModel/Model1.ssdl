@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CarsCompanyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassportId" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="WorkExperience" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PointDeparture" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PointDestination" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Distance" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleInTrailer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Trailer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarBrand" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CarCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CarNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Сarrying" Type="int" Nullable="false" />
+    <Property Name="FuelConsumption" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Length" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CostDelivery" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Experience" Type="int" />
+  </EntityType>
+  <EntityType Name="TrailerDriver">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdDriver" Type="int" />
+    <Property Name="IdTrailer" Type="int" />
+    <Property Name="IdOrder" Type="int" />
+    <Property Name="IdRoleInTrailer" Type="int" />
+  </EntityType>
+  <Association Name="FK_TrailerDriver_Driver">
+    <End Role="Driver" Type="Self.Driver" Multiplicity="0..1" />
+    <End Role="TrailerDriver" Type="Self.TrailerDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Driver">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailerDriver">
+        <PropertyRef Name="IdDriver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrailerDriver_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="TrailerDriver" Type="Self.TrailerDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailerDriver">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrailerDriver_RoleInTrailer">
+    <End Role="RoleInTrailer" Type="Self.RoleInTrailer" Multiplicity="0..1" />
+    <End Role="TrailerDriver" Type="Self.TrailerDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleInTrailer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailerDriver">
+        <PropertyRef Name="IdRoleInTrailer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrailerDriver_Trailer">
+    <End Role="Trailer" Type="Self.Trailer" Multiplicity="0..1" />
+    <End Role="TrailerDriver" Type="Self.TrailerDriver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trailer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailerDriver">
+        <PropertyRef Name="IdTrailer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище CarsCompanyModelContainer">
+    <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleInTrailer" EntityType="Self.RoleInTrailer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trailer" EntityType="Self.Trailer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrailerDriver" EntityType="Self.TrailerDriver" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TrailerDriver_Driver" Association="Self.FK_TrailerDriver_Driver">
+      <End Role="Driver" EntitySet="Driver" />
+      <End Role="TrailerDriver" EntitySet="TrailerDriver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrailerDriver_Order" Association="Self.FK_TrailerDriver_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="TrailerDriver" EntitySet="TrailerDriver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrailerDriver_RoleInTrailer" Association="Self.FK_TrailerDriver_RoleInTrailer">
+      <End Role="RoleInTrailer" EntitySet="RoleInTrailer" />
+      <End Role="TrailerDriver" EntitySet="TrailerDriver" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrailerDriver_Trailer" Association="Self.FK_TrailerDriver_Trailer">
+      <End Role="Trailer" EntitySet="Trailer" />
+      <End Role="TrailerDriver" EntitySet="TrailerDriver" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

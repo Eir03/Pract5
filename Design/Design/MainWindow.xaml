@@ -1,0 +1,55 @@
+﻿<Window x:Class="Design.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Design"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStyle="None">
+    <Grid Background="#F8F3F2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Background="#050038"
+                    MouseDown="StackPanel_MouseDown"
+                    Grid.Row="0">
+        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="134*"/>
+                <ColumnDefinition Width="134*"/>
+                <ColumnDefinition Width="133*"/>
+                <ColumnDefinition Width="133*"/>
+                <ColumnDefinition Width="205*"/>
+                <ColumnDefinition Width="61*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="X"
+                    Grid.Column="5"
+                    Style="{StaticResource SuperButton}"
+                    Background="Red" Width="40"
+                    Name="BtnExit" Margin="11,8,10,0" Height="25" VerticalAlignment="Top" Click="BtnExit_Click"/>
+            <Button Grid.Column="1"
+                Content="Меню"
+                Style="{StaticResource SuperButton}"
+                Name="BtnMenu" Click="BtnMenu_Click"/>
+            <Button Grid.Column="2"
+                Content="Автомобили"
+                Style="{StaticResource SuperButton}" Click="Button_Click"/>
+            <Button Grid.Column="3"
+                    Name="BtnDriver"
+                    Content="Водители"
+                    Style="{StaticResource SuperButton}" Click="BtnDriver_Click"/>
+            <Button Grid.Column="4"
+                    Content="Заказы"
+                    Style="{StaticResource SuperButton}"
+                    Name="BtnOrder" Click="BtnOrder_Click"/>
+        </Grid>
+        <Frame NavigationUIVisibility="Hidden"
+            Name="FrmMain"
+               Grid.Row="1"/>
+    </Grid>
+</Window>
